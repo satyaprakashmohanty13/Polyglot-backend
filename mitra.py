@@ -443,18 +443,18 @@ def process_files(fn1, fdata1, fn2, fdata2):
 	return results, generated_files
 
 
-def main():
-	args = Setup(__description__)
-	fn1,fn2 = args.file1, args.file2
-	with open(fn1, "rb") as f:
-		fdata1 = f.read()
-	with open(fn2, "rb") as f:
-		fdata2 = f.read()
+# def main():
+# 	args = Setup(__description__)
+# 	fn1,fn2 = args.file1, args.file2
+# 	with open(fn1, "rb") as f:
+# 		fdata1 = f.read()
+# 	with open(fn2, "rb") as f:
+# 		fdata2 = f.read()
 
-	# The Setup function is called first to configure the application
-	results, files = process_files(fn1, fdata1, fn2, fdata2)
-	for r in results:
-		print(r)
+# 	# The Setup function is called first to configure the application
+# 	results, files = process_files(fn1, fdata1, fn2, fdata2)
+# 	for r in results:
+# 		print(r)
 
-if __name__ == "__main__":
-	main()
+# if __name__ == "__main__":
+# 	main()

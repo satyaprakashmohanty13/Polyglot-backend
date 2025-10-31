@@ -1,3 +1,5 @@
 frontend
 pymupdf
-streamlit
+fastapi
+uvicorn
+python-multipart
