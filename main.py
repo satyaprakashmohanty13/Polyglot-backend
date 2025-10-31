@@ -1,5 +1,4 @@
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
-from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from mitra import process_files, __description__
 from args import Setup
@@ -22,10 +21,6 @@ if not os.path.exists('out'):
     os.makedirs('out')
 if not os.path.exists('uploads'):
     os.makedirs('uploads')
-
-@app.get("/")
-async def read_index():
-    return FileResponse('index.html')
 
 @app.post("/generate")
 async def generate_polyglots(
