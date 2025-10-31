@@ -32,7 +32,12 @@ async def generate_polyglots(
     overlap: bool = Form(False),
     pad: int = Form(0)
 ):
+    import logging
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+
     try:
+        logger.info("Starting polyglot generation for files: %s and %s", file1.filename, file2.filename)
         # Save uploaded files to disk
         file1_path = os.path.join("uploads", file1.filename)
         file2_path = os.path.join("uploads", file2.filename)
@@ -74,7 +79,9 @@ async def generate_polyglots(
         import base64
         # Convert generated files to a JSON-serializable format
         response_files = [{"filename": filename, "data": base64.b64encode(data).decode('utf-8')} for filename, data in generated_files]
+        logger.info("Successfully generated %d files.", len(response_files))
 
         return {"results": results, "generated_files": response_files}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error("An error occurred during polyglot generation: %s", e, exc_info=True)
+        raise HTTPException(status_code=500, detail=f"An internal server error occurred: {e}")

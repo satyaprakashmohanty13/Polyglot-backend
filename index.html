@@ -146,7 +146,11 @@
                     downloadLinks.appendChild(link);
                 });
             } else {
-                alert('An error occurred during file generation.');
+                const errorResult = await response.json();
+                document.getElementById('results-section').style.display = 'block';
+                const logOutput = document.getElementById('log-output');
+                logOutput.textContent = `An error occurred:\n${errorResult.detail || 'Unknown error'}`;
+                document.getElementById('download-links').innerHTML = ''; // Clear any previous download links
             }
         });
     </script>
